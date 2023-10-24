@@ -1,5 +1,9 @@
 def display_main_menu():
-    print("Enter numbers seperated by commas. (e.g. 3, 45, 67")
+    print("1. average temp")
+    print("2. min/max temp")
+    print("3. sorted temp")
+    print("4. median temp")
+
 
 def get_user_input():
     user_in = input()
@@ -9,12 +13,14 @@ def get_user_input():
         result.append(float(u))
     return result
 
+
 def calc_average(x):
     result = 0
     for i in x:
         result += i
     result /= len(x)
     return result
+
 
 def find_min_max(x):
     min = x[0]
@@ -25,24 +31,32 @@ def find_min_max(x):
     result = [min, max]
     return result
 
+
 def sort_temperature(x):
     return sorted(x)
 
+
+from statistics import median
+
+
 def calc_median_temperature(x):
-    x = sort_temperature(x)
-    length = len(x)
-    index = (length - 1) // 2
-    result = 0
-    if (length % 2) == 0:
-        result = (x[length] + x[length + 1])/2.0
-    else:
-        result = x[length]
-    return result
+    return median(x)
+
 
 def main():
     print("ET0735 (DevOps for AIoT) - Lab 2 - Introduction to Python")
-    display_main_menu()
+    print("Please enter some temperature values")
+    print(">> ", end="")
     num_list = get_user_input()
+    display_main_menu()
+    print(">> ", end="")
+    choice = int(input())
+    if choice <= 0 and choice > 4:
+        print("Invalid choice!")
+        return
+    funcs = [calc_average, find_min_max, sort_temperature, calc_median_temperature]
+    result = funcs[choice-1](num_list)
+    print("Result:" + str(result))
 
 if __name__ == "__main__":
     main()
