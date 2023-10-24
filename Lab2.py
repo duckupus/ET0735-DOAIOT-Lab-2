@@ -26,12 +26,18 @@ def find_min_max(x):
     return result
 
 def sort_temperature(x):
-    print("sort_temperature")
-    return
+    return sorted(x)
 
-def calc_median_temperature():
-    print("calc_median_temperature")
-    return
+def calc_median_temperature(x):
+    x = sort_temperature(x)
+    length = len(x)
+    index = (length - 1) // 2
+    result = 0
+    if (length % 2) == 0:
+        result = (x[length] + x[length + 1])/2.0
+    else:
+        result = x[length]
+    return result
 
 def main():
     print("ET0735 (DevOps for AIoT) - Lab 2 - Introduction to Python")
